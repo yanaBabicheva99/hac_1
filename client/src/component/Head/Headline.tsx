@@ -7,12 +7,12 @@ import {
   OrderedListOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+
 import {useSelector} from "react-redux";
 import {getUser} from "../../services/tokenService";
 import {useGetUserQuery} from "../../services/userService";
 
 const { Header } = Layout;
-
 
 
 const items: MenuProps["items"] = [
@@ -68,12 +68,11 @@ const Headline: React.FC = () => {
         },
     ];
 
-
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
   };
-  
+
   return (
     <Header
       style={{

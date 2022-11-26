@@ -28,8 +28,6 @@ const items: MenuProps["items"] = [
 
 const Headline: React.FC = () => {
   const [current, setCurrent] = useState("mail");
-  //   const userId = useSelector(getUser());
-  //   const { data, error, isLoading } = useGetUserQuery(userId);
 
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
@@ -49,7 +47,6 @@ const Headline: React.FC = () => {
               padding: "0 0 0 10px",
             }}
           >
-            <h4 style={{ margin: "0 10px 0 0" }}>asdas</h4>
             <Avatar
               size="default"
               icon={<UserOutlined />}

@@ -3,7 +3,7 @@ import React from 'react';
 import './TestLists.css'
 import TestForm from '../form/testForm';
 
-import {Card } from 'antd';
+import {Card} from 'antd';
 
 
 const TaskLists = ({children, handleSubmit}) => {
@@ -15,20 +15,18 @@ const TaskLists = ({children, handleSubmit}) => {
             justifyContent: 'center',
 
         }}>
-                <div className='taskLists__Content'>
+            <div className='taskLists__Content'>
                     <Card title='Добавление тестов'
-                          style={{textAlign: 'center', width: '100%' }}
+                          style={{textAlign: 'center', width: '100%'}}
                     >
-                      <TestForm handleSubmit={handleSubmit}/>
+                        <TestForm handleSubmit={handleSubmit}/>
                     </Card>
-
                     <Card title='Список Тестов'
                           style={{textAlign: 'center', width: '100%'}}
                     >
-                      {children}
+                        {children}
                     </Card>
-
-                </div>
+            </div>
         </div>
     );
 }

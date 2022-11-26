@@ -15,32 +15,20 @@ const TaskLists = ({children, handleSubmit}) => {
             justifyContent: 'center',
 
         }}>
-            <Card title='Список тестов'
-                  headStyle={{
-                      textAlign: 'center',
-                      width: '800px',
-
-                  }}
-                  style={{
-                      width: '800px',
-                      height: '800px'
-                  }}
-            >
                 <div className='taskLists__Content'>
                     <Card title='Добавление тестов'
-                          style={{textAlign: 'center', height: '700px'}}
+                          style={{textAlign: 'center', width: '100%' }}
                     >
                       <TestForm handleSubmit={handleSubmit}/>
                     </Card>
 
                     <Card title='Список Тестов'
-                          style={{textAlign: 'center'}}
+                          style={{textAlign: 'center', width: '100%'}}
                     >
                       {children}
                     </Card>
 
                 </div>
-            </Card>
         </div>
     );
 }

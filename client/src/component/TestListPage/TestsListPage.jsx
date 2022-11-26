@@ -6,7 +6,7 @@ import TestLists from '../TaskLists/TestLists';
 
 
 
-const TestsList = () => {
+const TestsListPage = () => {
   const [createTest] = useCreateTestMutation();
   const {data, error, isLoading} = useGetTestsQuery();
 
@@ -30,4 +30,4 @@ const TestsList = () => {
   );
 };
 
-export default TestsList;
+export default TestsListPage;

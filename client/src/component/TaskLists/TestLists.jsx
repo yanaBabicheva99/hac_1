@@ -4,8 +4,6 @@ import './TestLists.css'
 import TestForm from '../form/testForm';
 
 import {Card } from 'antd';
-import './TaskList/TaskList.css';
-// import {TasksList} from "../TasksList/TasksList";
 
 
 const TaskLists = ({children, handleSubmit}) => {

@@ -19,7 +19,7 @@ import { TestPage } from "./TestPage/TestPage";
 // import CreateTest from "./createTest/createTest";
 
 import CreateTest from './createTest/createTest';
-import TestsList from './TestListPage/testsList';
+import TestsListPage from './TestListPage/TestsListPage';
 
 
 export const Routes = () => {
@@ -32,7 +32,7 @@ export const Routes = () => {
         <Route path="/login" element={<Navigate to="/" replace />} />
         <Route path="/" element={<Main />}></Route>
         {/*<Route path={"/tasks"} element={<Tasks />}></Route>*/}
-        <Route path={'/tests'} element={<TestsList />}></Route>
+        <Route path={'/tests'} element={<TestsListPage />}></Route>
 
         <Route path="/personalpage" element={<Personal />}></Route>
         <Route path="/headline" element={<Headline />}></Route>

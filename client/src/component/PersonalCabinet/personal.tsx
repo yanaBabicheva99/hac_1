@@ -7,6 +7,9 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface'
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import Headline from '../Head/Headline';
 import { Link } from 'react-router-dom';
+import {useGetUserQuery} from "../../services/userService";
+import {useSelector} from "react-redux";
+import {getUser} from "../../services/tokenService";
 
 const { Header, Content, Footer } = Layout;
 const { TextArea } = Input;
@@ -65,6 +68,12 @@ const Personal: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
+  const userId = useSelector(getUser());
+
+  const {data: currentUser, error, isLoading} = useGetUserQuery(userId);
+
+  console.log('curr', currentUser);
+
   const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
     if (info.file.status === 'uploading') {
       setLoading(true);
@@ -102,6 +111,9 @@ const Personal: React.FC = () => {
   };
 
   const [size, setSize] = useState<SizeType>('large');
+  if (isLoading) {
+    return <h2>Loading...</h2>
+  }
   return (
     <Layout>
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 32 }}>

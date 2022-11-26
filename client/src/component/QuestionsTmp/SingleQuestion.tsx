@@ -14,7 +14,6 @@ export interface questionI {
   };
 }
 export const SingleQuestion: FC<questionI> = ({ task }) => {
-  debugger;
   return (
     <div className={"single-wrapper"}>
       <Card title={task.title}>

@@ -1,8 +1,0 @@
-.taskbody {
-    padding-top: 50px;
-}
-
-.taskbody__tasks {
-    display: grid;
-    grid-gap: 10px;
-}

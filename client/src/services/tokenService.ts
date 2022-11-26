@@ -49,4 +49,5 @@ export const removeToken = () => (dispatch: DispatchType) => {
 }
 
 export const getToken = () => (state: StateType) => state.token.tokenValue;
+export const getUser = () => (state: StateType) => state.token.userId;
 export default tokenReducer;

@@ -10,11 +10,19 @@ import {Provider} from "react-redux";
 
 import Headline from "./component/Head/Headline";
 import {Routes} from "./component/routs";
+import { ConfigProvider } from "antd";
 
 const store: any = createStore();
 
 function App() {
     return (
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: '#025EA1',
+                },
+            }}
+        >
         <Provider store={store}>
             <div className={"app"}>
                 <Headline/>
@@ -22,6 +30,7 @@ function App() {
                 <ToastContainer position="top-center"/>
             </div>
         </Provider>
+        </ConfigProvider>
     );
 }
 

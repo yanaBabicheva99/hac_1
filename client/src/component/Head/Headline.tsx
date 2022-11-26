@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, MenuProps } from "antd";
+import { Avatar, Layout, Menu, MenuProps } from "antd";
 import { NavLink } from "react-router-dom";
 import "./Headline.css";
 import {
@@ -10,16 +10,37 @@ import {
 
 const { Header } = Layout;
 
+const items2: MenuProps["items"] = [
+  {
+    label: (
+      <NavLink to="/personalpage">
+        {" "}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "0 0 0 10px",
+          }}
+        >
+          <h4 style={{ margin: "0 10px 0 0" }}>Fynjy</h4>
+          <Avatar
+            size="default"
+            icon={<UserOutlined />}
+            style={{ margin: "0 10px 0 0" }}
+          />
+        </div>
+      </NavLink>
+    ),
+    key: "personal",
+  },
+];
+
 const items: MenuProps["items"] = [
   {
     icon: <MenuOutlined />,
     label: <NavLink to="/">Главная</NavLink>,
     key: "main",
-  },
-  {
-    icon: <UserOutlined />,
-    label: <NavLink to="/personalpage">Личный кабинет</NavLink>,
-    key: "personal",
   },
   {
     icon: <OrderedListOutlined />,
@@ -34,27 +55,39 @@ const Headline: React.FC = () => {
     console.log("click ", e);
     setCurrent(e.key);
   };
+  
   return (
-    <Layout>
-      <Header
+    <Header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
+        width: "100%",
+        backgroundColor: "white",
+        border: "1px solid whitesmoke",
+      }}
+    >
+      <div
         style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 1,
-          width: "100%",
-          backgroundColor: "white",
-          border: "1px solid whitesmoke",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <div className="logo" />
         <Menu
           onClick={onClick}
           selectedKeys={[current]}
           mode="horizontal"
           items={items}
         />
-      </Header>
-    </Layout>
+        <Menu
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items2}
+        />
+      </div>
+    </Header>
   );
 };
 

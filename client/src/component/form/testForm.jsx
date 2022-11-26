@@ -20,7 +20,7 @@ const TestForm = ({
                       name: "",
                       description: "",
                     },
-                    title='Создать задачу',
+                    title='Создать тест',
                     handleSubmit,
                     handleVisible= null
                   }) => {
@@ -44,7 +44,7 @@ const TestForm = ({
             className="login__input"
             type="text"
             name="name"
-            placeholder={'Имя задачи'}
+            placeholder={'Имя теста'}
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -55,7 +55,7 @@ const TestForm = ({
             className="login__input"
             type="text"
             name="description"
-            placeholder={'Описание задачи'}
+            placeholder={'Описание теста'}
             value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}

@@ -19,11 +19,10 @@ import {
 import type {UploadChangeParam} from "antd/es/upload";
 import type {RcFile, UploadFile, UploadProps} from "antd/es/upload/interface";
 import type {SizeType} from "antd/es/config-provider/SizeContext";
-import Headline from "../Head/Headline";
 import {Link} from "react-router-dom";
-import {useGetUserQuery} from "../../services/userService";
 import {useSelector} from "react-redux";
-import {getUser} from "../../services/tokenService";
+import {useGetUserQuery} from "../../../services/userService";
+import {getUser} from "../../../services/tokenService";
 
 const {Header, Content, Footer} = Layout;
 const {TextArea} = Input;

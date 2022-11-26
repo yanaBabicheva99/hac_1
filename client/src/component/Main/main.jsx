@@ -23,7 +23,7 @@ const Main = () => {
       <div className={"brand-info"}>
         <Avatar
           src={
-            "https://upload.wikimedia.org/wikipedia/ru/thumb/4/42/Росатом_Знак.svg/640px-Росатом_Знак.svg.png"
+            require('./logo.png')
           }
           size={300}
         />

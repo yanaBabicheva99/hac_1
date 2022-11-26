@@ -14,19 +14,14 @@ const Main = () => {
   } = useGetTestsQuery();
   console.log("err", error);
 
-  if (isLoading) {
+  if (isLoading || dataLoading) {
     return <h2>Loading</h2>;
   }
   console.log(data, error);
   return (
     <div className={"main-wrapper"}>
       <div className={"brand-info"}>
-        <Avatar
-          src={
-            require('./logo.png')
-          }
-          size={300}
-        />
+        <Avatar src={require("./logo.png")} size={300} />
         <hr style={{ border: "none" }} />
         <div>
           <h1>Гринатом</h1>

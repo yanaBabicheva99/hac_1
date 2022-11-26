@@ -84,9 +84,9 @@ const Personal: React.FC = () => {
 
   const userId = useSelector(getUser());
 
-  const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
+  //   const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
 
-  console.log("curr", currentUser);
+  //   console.log("curr", currentUser);
 
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
@@ -129,9 +129,9 @@ const Personal: React.FC = () => {
   };
 
   const [size, setSize] = useState<SizeType>("large");
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  //   if (isLoading) {
+  //     return <h2>Loading...</h2>;
+  //   }
   return (
     <Layout>
       <Content

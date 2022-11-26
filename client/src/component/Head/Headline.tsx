@@ -7,34 +7,13 @@ import {
   OrderedListOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import {useSelector} from "react-redux";
+import {getUser} from "../../services/tokenService";
+import {useGetUserQuery} from "../../services/userService";
 
 const { Header } = Layout;
 
-const items2: MenuProps["items"] = [
-  {
-    label: (
-      <NavLink to="/personalpage">
-        {" "}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0 0 0 10px",
-          }}
-        >
-          <h4 style={{ margin: "0 10px 0 0" }}>Fynjy</h4>
-          <Avatar
-            size="default"
-            icon={<UserOutlined />}
-            style={{ margin: "0 10px 0 0" }}
-          />
-        </div>
-      </NavLink>
-    ),
-    key: "personal",
-  },
-];
+
 
 const items: MenuProps["items"] = [
   {
@@ -51,6 +30,45 @@ const items: MenuProps["items"] = [
 
 const Headline: React.FC = () => {
   const [current, setCurrent] = useState("mail");
+
+    const userId = useSelector(getUser());
+    const {data: currentUser, error, isLoading} = useGetUserQuery(userId);
+    console.log(currentUser, 'current');
+
+
+
+    const items2: MenuProps["items"] = [
+        {
+            label: (
+                <NavLink to="/personalpage">
+                    {" "}
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            padding: "0 0 0 10px",
+                        }}
+                    >
+                        <h4 style={{ margin: "0 10px 0 0" }}>
+                            {isLoading ?
+                                <>Loading...</>
+                                : currentUser.name
+                            }
+                        </h4>
+                        <Avatar
+                            size="default"
+                            icon={<UserOutlined />}
+                            style={{ margin: "0 10px 0 0" }}
+                        />
+                    </div>
+                </NavLink>
+            ),
+            key: "personal",
+        },
+    ];
+
+
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
     setCurrent(e.key);

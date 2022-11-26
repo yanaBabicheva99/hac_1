@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Card } from 'antd';
+import { Card, Checkbox, Space } from 'antd';
 import './createTest.css'
 import { Input, Button, Radio } from 'antd';
 
@@ -20,7 +20,6 @@ const CreateTest = () => {
             <Input placeholder="Описание" />
           </div>
           <div className="TestContainer__btns">
-            <Button>Добавление задачи</Button>
             <Button>Добавление варианта</Button>
           </div>
         </div>
@@ -32,6 +31,13 @@ const CreateTest = () => {
           <Radio>Вариант ответа 2</Radio>
           <Radio>Вариант ответа 3</Radio>
         </div>
+
+        <Checkbox.Group name="checkboxgroup">
+          <Space direction="vertical">
+
+              <Checkbox>Dfhbfyn jndtnf 1</Checkbox>
+          </Space>
+        </Checkbox.Group>
 
         <textarea
           style={{ width: "100%", borderRadius: "10px" }}

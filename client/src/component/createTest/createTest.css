@@ -6,21 +6,21 @@
    }
 
 .TestContainer__content{
-    padding: 10px;
-   
+    padding-top: 10px;
 }
 
 .TestContainer__btns {
-    padding: 15px;
-    margin-top: 15px;
+    padding: 15px 0;
+    margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .TestContainer__inputs {
-  display: block;
-  
+  display: flex;
+    flex-direction: column;
+  row-gap: 15px;
 }
 
 @media screen and (max-width: 900px) {

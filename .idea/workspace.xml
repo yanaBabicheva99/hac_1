@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1daf631a-ef60-48ef-849e-7a8e627e9481" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/QuestionsTmp/SingleQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/QuestionsTmp/SingleQuestion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/TaskLists/TaskList/TaskList.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/TaskLists/TaskList/TaskList.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/TaskLists/TestLists.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/TaskLists/TestLists.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/TasksList/TasksList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/TestListPage/testsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/TestListPage/TestsListPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/routs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/routs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/tokenService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/tokenService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Head/Headline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Head/Headline.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/createTest/createTest.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/createTest/createTest.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/createTest/createTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/createTest/createTest.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

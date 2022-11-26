@@ -21,7 +21,7 @@
 
 .tests {
     width: 40%;
-    margin: auto 0 15px 0;
+    margin: auto 0;
 }
 
 @media screen and (max-width: 900px) {

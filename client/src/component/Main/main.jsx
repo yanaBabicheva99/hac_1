@@ -15,7 +15,20 @@ const Main = () => {
   console.log("err", error);
 
   if (isLoading || dataLoading) {
-    return <h2>Loading</h2>;
+    return (
+      <div className={"main-wrapper"}>
+        <div className={"brand-info"}>
+          <Avatar src={require("./logo.png")} size={300} loading={isLoading} />
+          <Card
+            loading={isLoading}
+            style={{ height: "50%", marginTop: "10px" }}
+          ></Card>
+        </div>
+        <div className={"tests"}>
+          <Card loading={isLoading} style={{ height: "100%" }}></Card>
+        </div>
+      </div>
+    );
   }
   console.log(data, error);
   return (

@@ -5,15 +5,18 @@
     align-items: center;
 }
 
+.tasks {
+    width: 100%
+}
+
 .task {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     border: 1px solid whitesmoke;
     border-radius: 20px;
-    width: 300px;
+    width: 100%;
     padding: 10px;
-
     text-align: center;
     align-items: center;
     margin-bottom: 5px;

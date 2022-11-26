@@ -11,13 +11,9 @@
     justify-content: space-between;
     border: 1px solid whitesmoke;
     border-radius: 20px;
-<<<<<<< HEAD:client/src/component/TestList/TestList.css
     width: 300px;
     padding: 10px;
-=======
-    padding: 5px;
-    width: 500px;
->>>>>>> 15d0f2f59eced1241fed604ec56398b6c2fd36f2:client/src/component/TasksList/TasksList.css
+
     text-align: center;
     align-items: center;
     margin-bottom: 5px;
@@ -29,16 +25,13 @@
 }
 
 .button-element {
-<<<<<<< HEAD:client/src/component/TestList/TestList.css
     margin-right: 10px;
     cursor: pointer;
-=======
-    margin-right: 5px;
+
 }
 
 @media screen and (max-width: 900px) {
     .task {
         width: 100%;
     }
->>>>>>> 15d0f2f59eced1241fed604ec56398b6c2fd36f2:client/src/component/TasksList/TasksList.css
 }

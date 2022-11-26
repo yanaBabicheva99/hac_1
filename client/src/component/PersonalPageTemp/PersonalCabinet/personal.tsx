@@ -4,7 +4,6 @@ import {
     Layout,
     Input,
     Card,
-    Avatar,
     Button,
     Select,
     InputNumber,

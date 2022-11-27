@@ -14,7 +14,7 @@ export const testAPI = createApi({
         transformResponse: (response: any) => response.result,
         providesTags: (result) => ["Test"],
     }),
-    getTest: build.query<Test, string>({
+    getTest: build.query({
         query: (id: string) => ({
             url: `tests?id=${id}`,
         }),

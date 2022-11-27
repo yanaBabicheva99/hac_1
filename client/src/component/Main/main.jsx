@@ -25,18 +25,18 @@ const info = () => {
 };
 
 const Main = () => {
-  const { data, error, isLoading } = useGetUsersQuery();
+  // const {data, error, isLoading} = useGetUsersQuery();
   const {
     data: dataTests,
     error: dataErrors,
     isLoading: dataLoading,
   } = useGetTestsQuery();
-  console.log("err", error);
+  console.log("err", dataErrors);
 
-  if (isLoading || dataLoading) {
+  if (dataLoading) {
     return <h2>Loading</h2>;
   }
-  console.log(data, error);
+  // console.log(data, error);
   return (
     <div className={"main-wrapper"}>
       <div className={"brand-info"}>
@@ -53,6 +53,31 @@ const Main = () => {
           современные решения для цифровизации атомной отрасли и становится
           одной из самых динамично развивающихся ИТ-компаний России.
         </div>
+      </div>
+      <div className={"tests"}>
+        <Card title={"Тесты"}>
+          <div className={"testcard-wrapper"}>
+            {dataTests.map((test) => (
+              <Card
+                key={test._id}
+                title={test.name}
+                style={{ width: "100%", marginTop: "5px" }}
+              >
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  {test.description}
+                  <Link to={`/test/${test._id}`}>
+                    <Button type="primary">Пройти тест!</Button>
+                  </Link>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </Card>
+        <Button style={{ width: "100%", marginTop: "5px" }} onClick={info}>
+          Контактная информация
+        </Button>
       </div>
       <div className={"tests"}>
         <Card title={"Тесты"}>

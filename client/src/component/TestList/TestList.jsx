@@ -31,11 +31,13 @@ export const TestList = ({data}) => {
       .catch(err => toast.error('Произошла ошибка. Попробуйте позже'))
   }
 
-  const handleSubmit = async (content) => {
+  const handleSubmit = async (content, { resetForm }) => {
     changeTest({id: currentTest.id, data: content})
       .unwrap()
       .then(data => console.log(data))
       .catch(err => toast.error('Произошла ошибка. Попробуйте позже'))
+
+    resetForm();
   }
 
     return (

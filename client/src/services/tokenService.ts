@@ -6,6 +6,7 @@ import { DispatchType, InitStateToken, StateType } from "../store/storeTypes";
 const initialState: InitStateToken = {
   tokenValue: localStorage.getItem("token") || null,
   userId: localStorage.getItem("userId") || null,
+  role: localStorage.getItem('role') || null
 };
 
 const authSlice = createSlice({
@@ -26,9 +27,11 @@ const authSlice = createSlice({
 
       localStorage.setItem("token", action.payload.accessToken);
       localStorage.setItem("userId", action.payload.user.id);
+      localStorage.setItem('role', action.payload.user.role)
 
       state.tokenValue = action.payload.accessToken;
       state.userId = action.payload.user.id;
+      state.role = action.payload.user.role;
     },
     removed(state) {
       localStorage.removeItem("token");
@@ -50,4 +53,6 @@ export const removeToken = () => (dispatch: DispatchType) => {
 
 export const getToken = () => (state: StateType) => state.token.tokenValue;
 export const getUser = () => (state: StateType) => state.token.userId;
+export const getRole = () => (state: StateType) => state.token.role;
+
 export default tokenReducer;

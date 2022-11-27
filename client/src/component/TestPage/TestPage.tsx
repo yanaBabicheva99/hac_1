@@ -10,6 +10,9 @@ import { useGetTestQuery } from "../../services/testService";
 export const TestPage = () => {
   const params = useParams();
   const { data, error, isLoading } = useGetTestQuery(`${params.id}`);
+
+  console.log(data);
+
   return (
     <div className={"test-wrapper"}>
       <Card
@@ -18,22 +21,22 @@ export const TestPage = () => {
         style={{ width: "100%" }}
       >
         <p>{data && data?.description}</p>
-        {data?.tasks.map((task) => {
+        {data?.tasks.map((task: any) => {
           if (task.type === "one")
             return (
-              <div>
+              <div key={task._id}>
                 <SingleQuestion task={task} />
               </div>
             );
           if (task.type === "many")
             return (
-              <div>
+              <div key={task._id}>
                 <MultiQuestion task={task} />
               </div>
             );
           if (task.type === "input")
             return (
-              <div>
+              <div key={task._id}>
                 <FreeQuestion task={task} />
               </div>
             );

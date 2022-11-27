@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./personal.css";
+import {toast} from "react-toastify";
+
 import {
   Layout,
   Input,
@@ -24,6 +26,7 @@ import type { SizeType } from "antd/es/config-provider/SizeContext";
 import Headline from "../Head/Headline";
 import { Link } from "react-router-dom";
 import {
+  useChangeUserInfMutation,
   useGetAvatarQuery,
   useGetUserQuery,
   useUpdateImgMutation,
@@ -108,6 +111,42 @@ const Personal: React.FC = () => {
   const { data: currentUser, error, isLoading } = useGetUserQuery<any>(userId);
 
   //   }
+
+  const [changeUserInf] = useChangeUserInfMutation();
+
+  const [ infoUser, setInfoUser] = useState({
+    name: '',
+    age: '',
+    gender: 'пол'
+  })
+
+
+  const handleChange = (e: any) => {
+    if (typeof e === 'object') {
+      setInfoUser(prevState => ({
+        ...prevState,
+        [e.target.name] : e.target.value
+      }))
+    } else if (typeof e === 'string') {
+      setInfoUser(prevState => ({
+            ...prevState,
+            gender: e
+          }))
+    } else {
+      setInfoUser(prevState => ({
+        ...prevState,
+        age: e
+      }))
+    }
+  }
+
+  const handleUpdateUser = async () => {
+    changeUserInf(infoUser)
+        .unwrap()
+        .then(data => toast.info('Данные о пользователе обновлены'))
+        .catch(err => toast.error('Ошибка, попробуйте позже'))
+  }
+
   return (
     <Content
       className="site-layout"
@@ -161,20 +200,34 @@ const Personal: React.FC = () => {
                   style={{ width: "100%", marginRight: "20px" }}
                 >
                   <div className="input-age">
-                    <Input placeholder="Имя" />
+                    <Input
+                        value={infoUser.name}
+                        name='name'
+                        placeholder="Имя"
+                        onChange={handleChange}
+                    />
                     <InputNumber
+                      name='age'
+                      value={infoUser.age}
                       placeholder="Возраст"
                       style={{ width: "100%", marginBottom: "10px" }}
+                      onChange={handleChange}
                     />
-                    <Select style={{ marginBottom: "10px" }} placeholder="Пол">
-                      <Option value="Option1">Мужской</Option>
-                      <Option value="Option2">Женский</Option>
+                    <Select
+                        value={infoUser.gender}
+                        // name='gender'
+                        style={{ marginBottom: "10px" }}
+                        onChange={handleChange}
+                        placeholder="Пол"
+                    >
+                      <Option value="mail">Мужской</Option>
+                      <Option value="female">Женский</Option>
                     </Select>
                     <div style={{ display: "flex" }}>
                       <UploadMy />
                     </div>
                   </div>
-                  <Button type={"primary"}>Изменить</Button>
+                  <Button onClick={handleUpdateUser} type={"primary"}>Изменить</Button>
                 </Card>
               </div>
             </div>

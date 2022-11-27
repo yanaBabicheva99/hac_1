@@ -30,6 +30,14 @@ export const userAPI = createApi({
       }),
       providesTags: (result) => ["User"],
     }),
+    changeUserInf: build.mutation({
+      query: (content) => ({
+        url: 'user',
+        method: 'PUT',
+        body: content
+      }),
+      invalidatesTags: ['User']
+    }),
     getAvatar: build.query({
       query: (path) => ({
         url: `avatar/${path}`,
@@ -52,4 +60,5 @@ export const {
   useGetUserQuery,
   useGetAvatarQuery,
   useGetUsersQuery,
+    useChangeUserInfMutation
 } = userAPI;

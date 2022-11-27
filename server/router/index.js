@@ -8,17 +8,12 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 const testController = require("../controllers/test-controller");
 const taskController = require("../controllers/task-controller");
 
+router.put("/user", authMiddleware, userController.change);
 router.post("/registration", userController.registration);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 router.post("/role", roleController.createRole);
 router.post("/avatar", userController.updatePicture);
-
-// router.get("/:path", (req, res) => {
-//   const path = req.params.path;
-//   (path.join(__dirname, `./files/${path}`)).pipe(fs.createWriteStream(filename)).on('close', callback);
-//   res.sendFile.(path.join(__dirname, `./files/${path}`));
-// });
 
 router.get("/tasks", taskController.get);
 router.post("/tasks", taskController.add);

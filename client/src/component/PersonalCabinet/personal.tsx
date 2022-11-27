@@ -137,64 +137,65 @@ const Personal: React.FC = () => {
               </div>
             }
           >
-            <Card
-              title="Информация"
-              style={{ width: "100%", marginRight: "20px" }}
-            >
-              {currentUser.avatar && (
-                <Avatar
-                  size={100}
-                  src={`http://localhost:5000/files/${currentUser.avatar}`}
-                  shape="square"
-                  icon={<UserOutlined />}
-                />
-              )}
-              <h4>Имя: {currentUser.name}</h4>
-              <h4>Возраст: {currentUser.age}</h4>
-              <h4>Пол: {currentUser.gender}</h4>
-              <Button type={"primary"}>Изменить</Button>
-            </Card>
-            <div className="card-redact" style={{ display: "flex" }}>
+            <div style={{ display: "flex" }}>
               <Card
-                title="Редактировать"
+                title="Информация"
                 style={{ width: "100%", marginRight: "20px" }}
               >
-                <h1>{currentUser.name}</h1>
-                <div className="input-age" style={{}}>
-                  <Input placeholder="Имя" style={{ marginBottom: "10px" }} />
-                  <InputNumber
-                    placeholder="Возраст"
-                    style={{ width: "100%", marginBottom: "10px" }}
+                {currentUser.avatar && (
+                  <Avatar
+                    size={100}
+                    src={`http://localhost:5000/files/${currentUser.avatar}`}
+                    shape="square"
+                    icon={<UserOutlined />}
                   />
-                  <Select style={{ marginBottom: "10px" }} placeholder="Пол">
-                    <Option value="Option1">Мужской</Option>
-                    <Option value="Option2">Женский</Option>
-                  </Select>
-                  <div style={{ display: "flex" }}>
-                    <UploadMy />
-                  </div>
-                </div>
+                )}
+                <h4>Имя: {currentUser.name}</h4>
+                <h4>Возраст: {currentUser.age}</h4>
+                <h4>Пол: {currentUser.gender}</h4>
                 <Button type={"primary"}>Изменить</Button>
               </Card>
-              {currentUser.tests.length !== 0 ? (
+              <div className="card-redact">
                 <Card
-                  title="Пройденные тесты"
-                  extra={<Button type="ghost">Подробности</Button>}
-                  tabList={tabList}
-                  activeTabKey={activeTabKey1}
-                  onTabChange={(key) => {
-                    onTab1Change(key);
-                  }}
-                  style={{ minWidth: "500px" }}
+                  title="Редактировать"
+                  style={{ width: "100%", marginRight: "20px" }}
                 >
-                  {currentUser.tests}
+                  <div className="input-age">
+                    <Input placeholder="Имя" />
+                    <InputNumber
+                      placeholder="Возраст"
+                      style={{ width: "100%", marginBottom: "10px" }}
+                    />
+                    <Select style={{ marginBottom: "10px" }} placeholder="Пол">
+                      <Option value="Option1">Мужской</Option>
+                      <Option value="Option2">Женский</Option>
+                    </Select>
+                    <div style={{ display: "flex" }}>
+                      <UploadMy />
+                    </div>
+                  </div>
+                  <Button type={"primary"}>Изменить</Button>
                 </Card>
-              ) : (
-                <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
-                  Нет тестов
-                </Card>
-              )}
+              </div>
             </div>
+            {currentUser.tests.length !== 0 ? (
+              <Card
+                title="Пройденные тесты"
+                extra={<Button type="ghost">Подробности</Button>}
+                tabList={tabList}
+                activeTabKey={activeTabKey1}
+                onTabChange={(key) => {
+                  onTab1Change(key);
+                }}
+                style={{ minWidth: "500px" }}
+              >
+                {currentUser.tests}
+              </Card>
+            ) : (
+              <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
+                Нет тестов
+              </Card>
+            )}
           </Card>
         </div>
       ) : (

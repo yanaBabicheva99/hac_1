@@ -111,7 +111,7 @@ class UserService {
     return user;
   }
 
-  async update(id, body) {
+  async change(id, body) {
     const { name, age, gender } = body;
     const user = await UserModel.findOne({ _id: id });
     if (!user) {

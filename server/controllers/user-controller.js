@@ -4,7 +4,10 @@ const userService = require("../service/user-service");
 const jwt = require("jsonwebtoken");
 const { updatePicture } = require("../service/user-service");
 const upload = require("../multer");
-const { validateRefreshToken } = require("../service/token-service");
+const {
+  validateRefreshToken,
+  validateAccessToken,
+} = require("../service/token-service");
 class UserController {
   async registration(req, res, next) {
     try {
@@ -83,6 +86,23 @@ class UserController {
     try {
       const user = await userService.getUser(req.params.id);
       res.json(user);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async change(req, res, next) {
+    try {
+      const { name, age, gender } = req.body;
+      const token = req.headers.authorization?.split(" ")[1];
+      if (!token) {
+        throw res.status(400).json({
+          status: "INVALID_DATA",
+        });
+      }
+      const user = req.user;
+      const userData = await userService.change(user.id, { name, age, gender });
+      return res.json(userData);
     } catch (err) {
       next(err);
     }

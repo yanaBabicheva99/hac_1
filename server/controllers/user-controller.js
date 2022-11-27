@@ -2,6 +2,9 @@ const { ObjectId } = require("mongodb");
 const userModel = require("../models/userModel");
 const userService = require("../service/user-service");
 const jwt = require("jsonwebtoken");
+const { updatePicture } = require("../service/user-service");
+const upload = require("../multer");
+const { validateRefreshToken } = require("../service/token-service");
 class UserController {
   async registration(req, res, next) {
     try {
@@ -110,6 +113,25 @@ class UserController {
     } catch (err) {
       next(err);
     }
+  }
+  async updatePicture(req, res, next) {
+    upload(req, res, async (err) => {
+      try {
+        if (err) {
+          res.sendStatus(500);
+        }
+        const userDTO = jwt.verify(
+          req.headers.authorization,
+          process.env.JWT_ACCESS_SECRET
+        );
+        const user = await userModel.findOne({ _id: new ObjectId(userDTO.id) });
+        user.avatar = req.file.filename;
+        await user.save();
+        res.send(req.file);
+      } catch (err) {
+        next(err);
+      }
+    });
   }
 }
 

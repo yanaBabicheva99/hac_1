@@ -6,7 +6,6 @@ class TestService {
       if (!name) {
         throw {
           status: "INVALID_DATA",
-          messages: [{ description: errorsMSG.NO_EMPTY }],
         };
       }
 

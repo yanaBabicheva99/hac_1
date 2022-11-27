@@ -35,12 +35,12 @@ const CreateTest = () => {
         <Checkbox.Group name="checkboxgroup">
           <Space direction="vertical">
 
-              <Checkbox>Dfhbfyn jndtnf 1</Checkbox>
+              <Checkbox>Вариант ответа 1</Checkbox>
           </Space>
         </Checkbox.Group>
 
         <textarea
-          style={{ width: "100%", borderRadius: "10px" }}
+          style={{ width: "100%", borderRadius: "10px", marginTop: '10px' }}
           placeholder="Текст теста"
         />
 

@@ -53,6 +53,7 @@ const Main = () => {
                     интеллект и машинное обучение. Сегодня Гринатом создает самые
                     современные решения для цифровизации Росатома и является одной из
                     самых динамично развивающихся ИТ-компаний России.
+                    <Button style={{width: '100%', marginTop: '5px'}} onClick={info}>Контактная информация</Button>
                 </div>
             </div>
             <div className={"tests"}>
@@ -72,7 +73,7 @@ const Main = () => {
                         ))}
                     </div>
                 </Card>
-                <Button style={{width: '100%', marginTop: '5px'}} onClick={info}>Контактная информация</Button>
+                
             </div>
         </div>
     );

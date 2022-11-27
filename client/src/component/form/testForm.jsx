@@ -3,27 +3,29 @@ import { Formik } from 'formik';
 import { Button, Input } from 'antd';
 import * as Yup from 'yup';
 
+const { TextArea } = Input;
+
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .required("is required")
     .min(2, 'is too short!')
-    .matches( /^\S/, 'incorrect'),
+    .matches(/^\S/, 'incorrect'),
   description: Yup.string()
-    .matches( /^\S*$/, 'incorrect')
+    .matches(/^\S*$/, 'incorrect')
     .min(10, 'is too short!')
 });
 
 
 
 const TestForm = ({
-                    initialValues = {
-                      name: "",
-                      description: "",
-                    },
-                    title='Создать тест',
-                    handleSubmit,
-                    handleVisible= null
-                  }) => {
+  initialValues = {
+    name: "",
+    description: "",
+  },
+  title = 'Создать тест',
+  handleSubmit,
+  handleVisible = null
+}) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -32,13 +34,13 @@ const TestForm = ({
       enableReinitialize={true}
     >
       {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        }) => (
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit
+      }) => (
         <form onSubmit={handleSubmit}>
           <Input
             className="login__input"
@@ -51,7 +53,7 @@ const TestForm = ({
           />
           {errors.name && touched.name && <p>{errors.name}</p>}
 
-          <Input
+          <TextArea
             className="login__input"
             type="text"
             name="description"
@@ -59,28 +61,29 @@ const TestForm = ({
             value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}
+            autoSize
           />
           {errors.description && touched.description && <p>{errors.description}</p>}
           <div className='wrapper__btn'>
-          <Button
-            disabled={errors.description || errors.name}
-            onClick={() => handleVisible()}
-            type="primary"
-            htmlType='submit'
-            className="login__button"
-          >
-            {title}
-          </Button>
-          {title === 'Изменить тест' &&
             <Button
+              disabled={errors.description || errors.name}
               onClick={() => handleVisible()}
               type="primary"
               htmlType='submit'
               className="login__button"
             >
-              Добавить задачу
+              {title}
             </Button>
-          }
+            {title === 'Изменить тест' &&
+              <Button
+                onClick={() => handleVisible()}
+                type="primary"
+                htmlType='submit'
+                className="login__button"
+              >
+                Добавить задачу
+              </Button>
+            }
           </div>
         </form>
       )}

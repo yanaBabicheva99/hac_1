@@ -17,7 +17,7 @@ const TaskLists = ({children, handleSubmit}) => {
         }}>
             <div className='taskLists__Content'>
                     <Card title='Добавление тестов'
-                          style={{textAlign: 'center', width: '100%'}}
+                          style={{textAlign: 'center', width: '50%'}}
                     >
                         <TestForm handleSubmit={handleSubmit}/>
                     </Card>

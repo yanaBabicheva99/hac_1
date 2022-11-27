@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Button, Input } from 'antd';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 const { TextArea } = Input;
 
@@ -15,9 +16,8 @@ const SignupSchema = Yup.object().shape({
     .min(10, 'is too short!')
 });
 
-
-
 const TestForm = ({
+
   initialValues = {
     name: "",
     description: "",
@@ -25,70 +25,92 @@ const TestForm = ({
   title = 'Создать тест',
   handleSubmit,
   handleVisible = null
-}) => {
-  return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={SignupSchema}
-      onSubmit={handleSubmit}
-      enableReinitialize={true}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit
-      }) => (
-        <form onSubmit={handleSubmit}>
-          <Input
-            className="login__input"
-            type="text"
-            name="name"
-            placeholder={'Имя теста'}
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {errors.name && touched.name && <p>{errors.name}</p>}
+}) => ({
 
-          <TextArea
-            className="login__input"
-            type="text"
-            name="description"
-            placeholder={'Описание теста'}
-            value={values.description}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            autoSize
-          />
-          {errors.description && touched.description && <p>{errors.description}</p>}
-          <div className='wrapper__btn'>
-            <Button
-              disabled={errors.description || errors.name}
-              onClick={() => handleVisible()}
-              type="primary"
-              htmlType='submit'
-              className="login__button"
-            >
-              {title}
-            </Button>
-            {title === 'Изменить тест' &&
+  initialValues = {
+    name: "",
+    description: "",
+  },
+  title = 'Создать тест',
+  handleSubmit,
+  handleVisible = null,
+  id = null
+}) => {
+    const navigate = useNavigate();
+
+    const handleAddTask = () => {
+      navigate('/createtask', {
+        state: {
+          id
+        }
+      });
+      handleVisible();
+    }
+
+    return (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SignupSchema}
+        onSubmit={handleSubmit}
+        enableReinitialize={true}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <Input
+              className="login__input"
+              type="text"
+              name="name"
+              placeholder={'Имя теста'}
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.name && touched.name && <p>{errors.name}</p>}
+
+            <TextArea
+              className="login__input"
+              type="text"
+              name="description"
+              placeholder={'Описание теста'}
+              value={values.description}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoSize
+            />
+            {errors.description && touched.description && <p>{errors.description}</p>}
+            <div className='wrapper__btn'>
               <Button
+
+                disabled={errors.description || errors.name}
                 onClick={() => handleVisible()}
                 type="primary"
                 htmlType='submit'
                 className="login__button"
               >
-                Добавить задачу
+                {title}
               </Button>
-            }
-          </div>
-        </form>
-      )}
-    </Formik>
-  );
-};
+              {title === 'Изменить тест' &&
+                <Button
+                  onClick={() => handleVisible()}
+                  type="primary"
+                  htmlType='submit'
+                  className="login__button"
+                >
+                  Добавить задачу
+                </Button>
+              }
+            </div>
+          </form>
+        )}
+      </Formik>
+    );
+  };
 
 export default TestForm;

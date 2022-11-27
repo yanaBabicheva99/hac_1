@@ -10,6 +10,7 @@ import {
   InputNumber,
   message,
   Upload,
+  Image,
 } from "antd";
 import {
   FileAddOutlined,
@@ -22,21 +23,20 @@ import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import Headline from "../Head/Headline";
 import { Link } from "react-router-dom";
-import { useGetUserQuery } from "../../services/userService";
+import {
+  useGetAvatarQuery,
+  useGetUserQuery,
+  useUpdateImgMutation,
+} from "../../services/userService";
 import { useSelector } from "react-redux";
 import { getUser } from "../../services/tokenService";
+import { UploadMy } from "./../Upload/UploadMy";
 
 const { Header, Content, Footer } = Layout;
 const { TextArea } = Input;
 const { Option } = Select;
 const UserList = ["Макс", "Никита", "Антон", "Яна"];
 const ColorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
-
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
 
 const beforeUpload = (file: RcFile) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -83,30 +83,6 @@ const Personal: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
-  //   console.log("curr", currentUser);
-
-  const handleChange: UploadProps["onChange"] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Загрузить фотографию</div>
-    </div>
-  );
-
   const changeUser = () => {
     const index = UserList.indexOf(user);
     setUser(index < UserList.length - 1 ? UserList[index + 1] : UserList[0]);
@@ -130,7 +106,7 @@ const Personal: React.FC = () => {
   //     return <h2>Loading...</h2>;
   const userId = useSelector(getUser());
   const { data: currentUser, error, isLoading } = useGetUserQuery<any>(userId);
-  console.log(currentUser);
+
   //   }
   return (
     <Content
@@ -161,67 +137,65 @@ const Personal: React.FC = () => {
               </div>
             }
           >
-            <div className="card-redact" style={{ display: "flex" }}>
+            <div style={{ display: "flex" }}>
               <Card
-                type="inner"
-                title="Данные"
+                title="Информация"
                 style={{ width: "100%", marginRight: "20px" }}
               >
-                <h1>{currentUser.name}</h1>
-                <div className="input-age" style={{}}>
-                  <Input placeholder="Имя" style={{ marginBottom: "10px" }} />
-                  <InputNumber
-                    placeholder="Возраст"
-                    style={{ width: "100%", marginBottom: "10px" }}
+                {currentUser.avatar && (
+                  <Avatar
+                    size={100}
+                    src={`http://localhost:5000/files/${currentUser.avatar}`}
+                    shape="square"
+                    icon={<UserOutlined />}
                   />
-                  <Select style={{ marginBottom: "10px" }} placeholder="Пол">
-                    <Option value="Option1">Мужской</Option>
-                    <Option value="Option2">Женский</Option>
-                  </Select>
-                  <div style={{ display: "flex" }}>
-							
-                    <Upload
-                      name="avatar"
-                      listType="picture-card"
-                      className="avatar-uploader"
-                      showUploadList={false}
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                      beforeUpload={beforeUpload}
-                      onChange={handleChange}
-                    >
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt="avatar"
-                          style={{ width: "100%" }}
-                        />
-                      ) : (
-                        uploadButton
-                      )}
-                    </Upload>
-                  </div>
-                </div>
+                )}
+                <h4>Имя: {currentUser.name}</h4>
+                <h4>Возраст: {currentUser.age}</h4>
+                <h4>Пол: {currentUser.gender}</h4>
                 <Button type={"primary"}>Изменить</Button>
               </Card>
-              {currentUser.tests.length !== 0 ? (
+              <div className="card-redact">
                 <Card
-                  title="Пройденные тесты"
-                  extra={<Button type="ghost">Подробности</Button>}
-                  tabList={tabList}
-                  activeTabKey={activeTabKey1}
-                  onTabChange={(key) => {
-                    onTab1Change(key);
-                  }}
-                  style={{ minWidth: "500px" }}
+                  title="Редактировать"
+                  style={{ width: "100%", marginRight: "20px" }}
                 >
-                  {currentUser.tests}
+                  <div className="input-age">
+                    <Input placeholder="Имя" />
+                    <InputNumber
+                      placeholder="Возраст"
+                      style={{ width: "100%", marginBottom: "10px" }}
+                    />
+                    <Select style={{ marginBottom: "10px" }} placeholder="Пол">
+                      <Option value="Option1">Мужской</Option>
+                      <Option value="Option2">Женский</Option>
+                    </Select>
+                    <div style={{ display: "flex" }}>
+                      <UploadMy />
+                    </div>
+                  </div>
+                  <Button type={"primary"}>Изменить</Button>
                 </Card>
-              ) : (
-                <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
-                  Нет тестов
-                </Card>
-              )}
+              </div>
             </div>
+            {currentUser.tests.length !== 0 ? (
+              <Card
+                title="Пройденные тесты"
+                extra={<Button type="ghost">Подробности</Button>}
+                tabList={tabList}
+                activeTabKey={activeTabKey1}
+                onTabChange={(key) => {
+                  onTab1Change(key);
+                }}
+                style={{ minWidth: "500px" }}
+              >
+                {currentUser.tests}
+              </Card>
+            ) : (
+              <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
+                Нет тестов
+              </Card>
+            )}
           </Card>
         </div>
       ) : (

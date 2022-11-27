@@ -47,9 +47,6 @@ const Headline: React.FC = () => {
               padding: "0 0 0 10px",
             }}
           >
-            <h4 style={{ margin: "0 10px 0 0" }}>
-              {isLoading ? <>Loading...</> : currentUser.name}
-            </h4>
             {currentUser && currentUser.avatar && (
               <Avatar
                 size="default"

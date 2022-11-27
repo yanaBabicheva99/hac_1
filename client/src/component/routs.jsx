@@ -18,21 +18,22 @@ import { TestPage } from "./TestPage/TestPage";
 // import TaskLists from "./TaskLists/TaskLists";
 // import CreateTest from "./createTask/createTask";
 
-import CreateTask from './createTask/createTask';
-import TestsListPage from './TestListPage/TestsListPage';
-
+import CreateTask from "./createTask/createTask";
+import TestsListPage from "./TestListPage/TestsListPage";
 
 export const Routes = () => {
   const select = useSelector(getToken());
   console.log("select");
   console.log(select);
   if (select) {
+    console.log("select");
+    console.log(select);
     return (
       <Switch>
         <Route path="/login" element={<Navigate to="/" replace />} />
         <Route path="/" element={<Main />}></Route>
         {/*<Route path={"/tasks"} element={<Tasks />}></Route>*/}
-        <Route path={'/tests'} element={<TestsListPage />}></Route>
+        <Route path={"/tests"} element={<TestsListPage />}></Route>
 
         <Route path="/personalpage" element={<Personal />}></Route>
         {/*<Route path="/headline" element={<Headline />}></Route>*/}

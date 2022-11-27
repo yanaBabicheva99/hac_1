@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1daf631a-ef60-48ef-849e-7a8e627e9481" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/component/createTask/createAnswer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/services/taskService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/PersonalPageTemp/PersonalCabinet/personal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/PersonalPageTemp/PersonalCabinet/personal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/Upload/UploadMy.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Head/Headline.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Head/Headline.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/Main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Main/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/Main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/Main/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/PersonalCabinet/personal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/TestList/TestList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/TestList/TestList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/createTest/createTest.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/createTask/createTask.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/createTest/createTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/createTask/createTask.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/form/testForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/form/testForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/modal/Modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/Modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/modal/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/Modal.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/routs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/routs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/TestListPage/TestsListPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/TestListPage/TestsListPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/userService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/userService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

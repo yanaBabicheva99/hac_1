@@ -2,6 +2,12 @@ const { ObjectId } = require("mongodb");
 const userModel = require("../models/userModel");
 const userService = require("../service/user-service");
 const jwt = require("jsonwebtoken");
+const { updatePicture } = require("../service/user-service");
+const upload = require("../multer");
+const {
+  validateRefreshToken,
+  validateAccessToken,
+} = require("../service/token-service");
 class UserController {
   async registration(req, res, next) {
     try {
@@ -85,6 +91,23 @@ class UserController {
     }
   }
 
+  async change(req, res, next) {
+    try {
+      const { name, age, gender } = req.body;
+      const token = req.headers.authorization?.split(" ")[1];
+      if (!token) {
+        throw res.status(400).json({
+          status: "INVALID_DATA",
+        });
+      }
+      const user = req.user;
+      const userData = await userService.change(user.id, { name, age, gender });
+      return res.json(userData);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   //   --> tests <--
 
   async saveTest(req, res, next) {
@@ -110,6 +133,25 @@ class UserController {
     } catch (err) {
       next(err);
     }
+  }
+  async updatePicture(req, res, next) {
+    upload(req, res, async (err) => {
+      try {
+        if (err) {
+          res.sendStatus(500);
+        }
+        const userDTO = jwt.verify(
+          req.headers.authorization,
+          process.env.JWT_ACCESS_SECRET
+        );
+        const user = await userModel.findOne({ _id: new ObjectId(userDTO.id) });
+        user.avatar = req.file.filename;
+        await user.save();
+        res.send(req.file);
+      } catch (err) {
+        next(err);
+      }
+    });
   }
 }
 

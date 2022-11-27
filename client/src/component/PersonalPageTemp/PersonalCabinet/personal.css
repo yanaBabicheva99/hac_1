@@ -1,0 +1,31 @@
+.card-redact {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.input-age {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+.input-gender {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    flex-direction: row;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 900px) {
+    
+}

@@ -48,10 +48,10 @@ export const TestList = ({data}) => {
                       </div>
                       <div className={'buttons'}>
                           <div onClick={() => handleEdit(item._id)} className={'button-element'}>
-                              <EditFilled style={{color: '#4096ff', fontSize: '18px'}}/>
+                              <EditFilled style={{color: '#025EA1', fontSize: '18px'}}/>
                           </div>
                           <div onClick={() => handleDelete(item._id)} className={'button-element'}>
-                              <CloseOutlined style={{color: '#ff4d4f', fontSize: '18px'}}/>
+                              <CloseOutlined style={{color: '#BF2C6D', fontSize: '18px'}}/>
                           </div>
                       </div>
                   </div>

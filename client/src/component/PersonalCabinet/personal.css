@@ -1,24 +1,21 @@
 .card-redact {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .input-age {
-    display: flex;
-    justify-content: space-between;
-    width: 10%;
-    margin-right: 10px;
-    flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .input-gender {
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 900px) {
-    
 }

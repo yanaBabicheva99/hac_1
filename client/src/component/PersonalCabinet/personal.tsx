@@ -10,32 +10,33 @@ import {
   InputNumber,
   message,
   Upload,
+  Image,
 } from "antd";
 import {
   FileAddOutlined,
   LoadingOutlined,
   PlusOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 import Headline from "../Head/Headline";
 import { Link } from "react-router-dom";
-import { useGetUserQuery } from "../../services/userService";
+import {
+  useGetAvatarQuery,
+  useGetUserQuery,
+  useUpdateImgMutation,
+} from "../../services/userService";
 import { useSelector } from "react-redux";
 import { getUser } from "../../services/tokenService";
+import { UploadMy } from "./../Upload/UploadMy";
 
 const { Header, Content, Footer } = Layout;
 const { TextArea } = Input;
 const { Option } = Select;
 const UserList = ["Макс", "Никита", "Антон", "Яна"];
 const ColorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
-
-const getBase64 = (img: RcFile, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
 
 const beforeUpload = (file: RcFile) => {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -82,34 +83,6 @@ const Personal: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
 
-  const userId = useSelector(getUser());
-
-  //   const { data: currentUser, error, isLoading } = useGetUserQuery(userId);
-
-  //   console.log("curr", currentUser);
-
-  const handleChange: UploadProps["onChange"] = (
-    info: UploadChangeParam<UploadFile>
-  ) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj as RcFile, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-
   const changeUser = () => {
     const index = UserList.indexOf(user);
     setUser(index < UserList.length - 1 ? UserList[index + 1] : UserList[0]);
@@ -131,77 +104,104 @@ const Personal: React.FC = () => {
   const [size, setSize] = useState<SizeType>("large");
   //   if (isLoading) {
   //     return <h2>Loading...</h2>;
+  const userId = useSelector(getUser());
+  const { data: currentUser, error, isLoading } = useGetUserQuery<any>(userId);
+
   //   }
   return (
-    <Layout>
-      <Content
-        className="site-layout"
-        style={{ padding: "0 50px", marginTop: 32 }}
-      >
+    <Content
+      className="site-layout"
+      style={{ padding: "0 50px", marginTop: 32 }}
+    >
+      {!isLoading ? (
         <div
           className="site-layout-background"
           style={{ padding: 0, minHeight: 380 }}
         >
           <Card
-            title="Пользователь"
+            title={currentUser.email}
             extra={
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-                style={{ width: "20px" }}
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
+              <div>
+                <div style={{ color: "gray", fontSize: "13px" }}>
+                  id: {currentUser._id}
+                </div>
+                <div
+                  style={{
+                    color: "gray",
+                    fontSize: "13px",
+                    textAlign: "right",
+                  }}
+                >
+                  {currentUser.role}
+                </div>
+              </div>
             }
           >
-            <div className="card-redact">
-              <Card type="inner" title="Данные" style={{ width: "100%" }}>
-                <h1>Попов Жопа Очкович</h1>
-                <div className="input-age">
-                  Возраст
-                  <InputNumber />
-                  <Select style={{ marginTop: "5px" }} defaultValue="Пол">
-                    <Option value="Option1">Мужской</Option>
-                    <Option value="Option2">Женский</Option>
-                  </Select>
-                </div>
+            <div style={{ display: "flex" }}>
+              <Card
+                title="Информация"
+                style={{ width: "100%", marginRight: "20px" }}
+              >
+                {currentUser.avatar && (
+                  <Avatar
+                    size={100}
+                    src={`http://localhost:5000/files/${currentUser.avatar}`}
+                    shape="square"
+                    icon={<UserOutlined />}
+                  />
+                )}
+                <h4>Имя: {currentUser.name}</h4>
+                <h4>Возраст: {currentUser.age}</h4>
+                <h4>Пол: {currentUser.gender}</h4>
+                <Button type={"primary"}>Изменить</Button>
               </Card>
+              <div className="card-redact">
+                <Card
+                  title="Редактировать"
+                  style={{ width: "100%", marginRight: "20px" }}
+                >
+                  <div className="input-age">
+                    <Input placeholder="Имя" />
+                    <InputNumber
+                      placeholder="Возраст"
+                      style={{ width: "100%", marginBottom: "10px" }}
+                    />
+                    <Select style={{ marginBottom: "10px" }} placeholder="Пол">
+                      <Option value="Option1">Мужской</Option>
+                      <Option value="Option2">Женский</Option>
+                    </Select>
+                    <div style={{ display: "flex" }}>
+                      <UploadMy />
+                    </div>
+                  </div>
+                  <Button type={"primary"}>Изменить</Button>
+                </Card>
+              </div>
             </div>
-            <Card
-              style={{ width: "100%", marginTop: "15px" }}
-              title="Пройденные тесты"
-              extra={<a href="#">Подробности</a>}
-              tabList={tabList}
-              activeTabKey={activeTabKey1}
-              onTabChange={(key) => {
-                onTab1Change(key);
-              }}
-            >
-              {contentList[activeTabKey1]}
-            </Card>
-            <Card type="inner" title="Заметки" style={{ marginTop: "15px" }}>
-              <TextArea rows={4} />
-            </Card>
+            {currentUser.tests.length !== 0 ? (
+              <Card
+                title="Пройденные тесты"
+                extra={<Button type="ghost">Подробности</Button>}
+                tabList={tabList}
+                activeTabKey={activeTabKey1}
+                onTabChange={(key) => {
+                  onTab1Change(key);
+                }}
+                style={{ minWidth: "500px" }}
+              >
+                {currentUser.tests}
+              </Card>
+            ) : (
+              <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
+                Нет тестов
+              </Card>
+            )}
           </Card>
         </div>
-      </Content>
-      <Footer style={{ textAlign: "center" }}>
-        <Link to={"/createtest"}>
-          <Button type="primary" icon={<FileAddOutlined />} size={size}>
-            Создать тест
-          </Button>
-        </Link>
-      </Footer>
-    </Layout>
+      ) : (
+        <Card loading={isLoading} style={{ height: "100%" }}></Card>
+      )}
+    </Content>
   );
 };
 

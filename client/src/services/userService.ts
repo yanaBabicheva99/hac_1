@@ -32,11 +32,19 @@ export const userAPI = createApi({
     }),
     changeUserInf: build.mutation({
       query: (content) => ({
-        url: 'user',
-        method: 'PUT',
-        body: content
+        url: "user",
+        method: "PUT",
+        body: content,
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ["User"],
+    }),
+    createAnswers: build.mutation({
+      query: (content) => ({
+        url: "tests/save",
+        method: "POST",
+        body: content,
+      }),
+      invalidatesTags: ["User"],
     }),
     getAvatar: build.query({
       query: (path) => ({
@@ -57,8 +65,9 @@ export const userAPI = createApi({
 
 export const {
   useUpdateImgMutation,
+  useCreateAnswersMutation,
   useGetUserQuery,
   useGetAvatarQuery,
   useGetUsersQuery,
-    useChangeUserInfMutation
+  useChangeUserInfMutation,
 } = userAPI;

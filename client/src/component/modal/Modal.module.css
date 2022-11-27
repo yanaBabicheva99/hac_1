@@ -15,7 +15,9 @@
      background-color: #fff;
     border-radius: 15px;
 }
-
+.create {
+    padding: 20px 20px 25px 20px;
+}
 .modal__btn {
     position: absolute;
     top: 0;
@@ -23,6 +25,7 @@
     transform: translateX(100%);
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .modal__btn_close {

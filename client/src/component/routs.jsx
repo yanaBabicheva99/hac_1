@@ -7,18 +7,18 @@ import Main from "./Main/main";
 import Login from "./LoginPage/login";
 import Personal from "./PersonalCabinet/personal";
 import Register from "./RegisterPage/register";
-import Headline from "./Head/Headline";
-
-import { Exhibition } from "./Exhibition/Exhibition";
+// import Headline from "./Head/Headline";
+//
+// import { Exhibition } from "./Exhibition/Exhibition";
 import { SingleQuestion } from "./QuestionsTmp/SingleQuestion";
 import { MultiQuestion } from "./QuestionsTmp/MultiQuestion";
 import { FreeQuestion } from "./QuestionsTmp/FreeQuestion";
 import { TestPage } from "./TestPage/TestPage";
 // import TaskList from "./TaskLists/TaskList/TaskList";
 // import TaskLists from "./TaskLists/TaskLists";
-// import CreateTest from "./createTest/createTest";
+// import CreateTest from "./createTask/createTask";
 
-import CreateTest from './createTest/createTest';
+import CreateTask from './createTask/createTask';
 import TestsListPage from './TestListPage/TestsListPage';
 
 
@@ -35,15 +35,15 @@ export const Routes = () => {
         <Route path={'/tests'} element={<TestsListPage />}></Route>
 
         <Route path="/personalpage" element={<Personal />}></Route>
-        <Route path="/headline" element={<Headline />}></Route>
+        {/*<Route path="/headline" element={<Headline />}></Route>*/}
         <Route path="/register" element={<Register />}></Route>
-        <Route path={"/exhibition"} element={<Exhibition />} />
+        {/*<Route path={"/exhibition"} element={<Exhibition />} />*/}
         {/*<Route path="*" element={<Navigate to="/login" replace />} />*/}
         <Route path={"/singlequestion"} element={<SingleQuestion />} />
         <Route path={"/multiquestion"} element={<MultiQuestion />} />
         <Route path={"/freequestion"} element={<FreeQuestion />} />
         <Route path={"/test/:id"} element={<TestPage />} />
-        <Route path={"/createtest"} element={<CreateTest />} />
+        <Route path={"/createtask"} element={<CreateTask />} />
         {/*<Route path={"/tasklist"} element={<TaskList />} />*/}
         {/*<Route path={"/tasklists"} element={<TaskLists />} />*/}
       </Switch>

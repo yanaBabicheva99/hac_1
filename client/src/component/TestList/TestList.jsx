@@ -60,6 +60,7 @@ export const TestList = ({data}) => {
           <Modal visible={visible} handleVisible={handleVisible}>
             {currentTest &&
               <TestForm
+                id={currentTest.id}
                 initialValues={currentTest.data}
                 title='Изменить тест'
                 handleSubmit={handleSubmit}

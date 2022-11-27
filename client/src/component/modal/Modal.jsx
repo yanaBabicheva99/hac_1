@@ -1,16 +1,17 @@
 import style from './Modal.module.css';
 import {ReactComponent as IconClose} from '../assets/close.svg';
 
-const Modal = ({children, visible, handleVisible}) => {
+const Modal = ({children, visible, handleVisible, subtitle=''}) => {
   const rootClasses = () => {
     return visible ? [style.modal, style.active].join(' ') : style.modal;
   };
 
   return (
     <div className={rootClasses()} onClick={handleVisible}>
-        <div className={style.modal__content}
+        <div className={ subtitle ? [style.modal__content, style.create].join(' ') : style.modal__content}
              onClick={(e) => e.stopPropagation()}
         >
+          {subtitle && <p>{subtitle}</p>}
           {children}
           <button
             className={style.modal__btn}

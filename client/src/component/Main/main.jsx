@@ -17,7 +17,7 @@ const Main = () => {
   if (isLoading || dataLoading) {
     return <h2>Loading</h2>;
   }
-  console.log(data, error);
+  console.log(dataTests, error);
   return (
     <div className={"main-wrapper"}>
       <div className={"brand-info"}>
@@ -41,7 +41,7 @@ const Main = () => {
         <Card title={"Тесты"}>
           <div className={"testcard-wrapper"}>
             {dataTests.map((test) => (
-              <Card title={test.name} style={{ width: "100%" }}>
+              <Card key={test._id} title={test.name} style={{ width: "100%" }}>
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >

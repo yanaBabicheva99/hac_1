@@ -3,9 +3,9 @@ import { Avatar, Layout, Menu, MenuProps } from "antd";
 import { NavLink } from "react-router-dom";
 import "./Headline.css";
 import {
-  MenuOutlined,
-  OrderedListOutlined,
-  UserOutlined,
+    MenuOutlined,
+    OrderedListOutlined,
+    UserOutlined,
 } from "@ant-design/icons";
 
 import { useSelector } from "react-redux";
@@ -15,16 +15,16 @@ import HeadLineAuthorized from "./HeadLineAuthorized";
 const { Header } = Layout;
 
 const items: MenuProps["items"] = [
-  {
-    icon: <MenuOutlined />,
-    label: <NavLink to="/">Главная</NavLink>,
-    key: "main",
-  },
-  {
-    icon: <OrderedListOutlined />,
-    label: <NavLink to="/tests">Мои тесты</NavLink>,
-    key: "tests",
-  },
+    {
+        icon: <MenuOutlined />,
+        label: <NavLink to="/">Главная</NavLink>,
+        key: "main",
+    },
+    {
+        icon: <OrderedListOutlined />,
+        label: <NavLink to="/tests">Мои тесты</NavLink>,
+        key: "tests",
+    },
 ];
 
 
@@ -50,7 +50,7 @@ const itemsGuest: MenuProps["items"] = [
                         padding: "0 0 0 10px",
                     }}
                 >
-                  <h4 style={{margin: "0 10px 0 0"}}>Вход</h4>
+                    <h4 style={{margin: "0 10px 0 0"}}>Вход</h4>
                 </div>
             </NavLink>
         ),
@@ -59,57 +59,57 @@ const itemsGuest: MenuProps["items"] = [
 ];
 
 const Headline: any = () => {
-  const [current, setCurrent] = useState("mail");
+    const [current, setCurrent] = useState("mail");
 
-  const userId = useSelector(getUser());
+    const userId = useSelector(getUser());
 
-  console.log(userId, 'uir');
+    console.log(userId, 'uir');
 
     const onClick: MenuProps["onClick"] = (e) => {
         console.log("click ", e);
         setCurrent(e.key);
     };
 
-  if (!userId) {
-      return (
-          <Header
-              style={{
-                  position: "sticky",
-                  top: 0,
-                  zIndex: 1,
-                  width: "100%",
-                  backgroundColor: "white",
-                  border: "1px solid whitesmoke",
-              }}
-          >
-              <div
-                  style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                  }}
-              >
-                  <Menu
-                      onClick={onClick}
-                      selectedKeys={[current]}
-                      mode="horizontal"
-                      items={itemsGuest2}
-                  />
-                  <Menu
-                      onClick={onClick}
-                      selectedKeys={[current]}
-                      mode="horizontal"
-                      items={itemsGuest}
-                  />
-              </div>
-          </Header>
-      );
+    if (!userId) {
+        return (
+            <Header
+                style={{
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 1,
+                    width: "100%",
+                    backgroundColor: "white",
+                    border: "1px solid whitesmoke",
+                }}
+            >
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <Menu
+                        onClick={onClick}
+                        selectedKeys={[current]}
+                        mode="horizontal"
+                        items={itemsGuest2}
+                    />
+                    <Menu
+                        onClick={onClick}
+                        selectedKeys={[current]}
+                        mode="horizontal"
+                        items={itemsGuest}
+                    />
+                </div>
+            </Header>
+        );
 
-  } else {
-      return (
-          <HeadLineAuthorized userId={userId} onClick={onClick} current={current} items={items}/>
-          )
-  }
+    } else {
+        return (
+            <HeadLineAuthorized userId={userId} onClick={onClick} current={current} items={items}/>
+        )
+    }
 };
 
 export default Headline;

@@ -1,7 +1,7 @@
 .TestContainer {
     display: flex;
     justify-content: center;
-    width: 99%;
+    width: 50%;
     margin: 5px 5px 0 5px;
    }
 
@@ -31,7 +31,7 @@
 }
 
 .wrapper__area {
-    width: 50%;
+    width: 100%;
 }
 .TestContainer__btns {
     /*padding: 15px 0;*/

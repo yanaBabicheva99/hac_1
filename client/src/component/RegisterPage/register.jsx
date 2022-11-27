@@ -56,10 +56,11 @@ const RegisterForm = () => {
     console.log(content);
     signUp(content)
       .unwrap()
-      .then((data) => dispatch(createToken(data)))
+      .then((data) => {
+        dispatch(createToken(data));
+        navigate('/');
+      })
       .catch(({ data: { message } }) => toast.error(message));
-
-      navigate.push('/')
   };
 
   // const {data, error, isLoading} = useGetUsersQuery();

@@ -27,11 +27,21 @@ const items: MenuProps["items"] = [
   },
 ];
 
+
+const itemsGuest2: MenuProps["items"] = [
+    {
+        icon: <MenuOutlined />,
+        label: <NavLink to="/">Главная</NavLink>,
+        key: "main",
+    },
+
+];
+
+
 const itemsGuest: MenuProps["items"] = [
     {
         label: (
-            <NavLink to="/personalpage">
-                {" "}
+            <NavLink to='/login'>
                 <div
                     style={{
                         display: "flex",
@@ -40,7 +50,7 @@ const itemsGuest: MenuProps["items"] = [
                         padding: "0 0 0 10px",
                     }}
                 >
-                  <h4 style={{margin: "0 10px 0 0"}}>Гость</h4>
+                  <h4 style={{margin: "0 10px 0 0"}}>Вход</h4>
                 </div>
             </NavLink>
         ),
@@ -52,6 +62,8 @@ const Headline: any = () => {
   const [current, setCurrent] = useState("mail");
 
   const userId = useSelector(getUser());
+
+  console.log(userId, 'uir');
 
     const onClick: MenuProps["onClick"] = (e) => {
         console.log("click ", e);
@@ -81,7 +93,7 @@ const Headline: any = () => {
                       onClick={onClick}
                       selectedKeys={[current]}
                       mode="horizontal"
-                      items={items}
+                      items={itemsGuest2}
                   />
                   <Menu
                       onClick={onClick}

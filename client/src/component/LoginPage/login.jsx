@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [signIn] = useSignInMutation();
   const select = useSelector(getToken());
+  const navigate = useNavigate();
 
   console.log(select);
 
@@ -35,7 +36,10 @@ const LoginForm = () => {
     console.log(content);
     signIn(content)
       .unwrap()
-      .then((data) => dispatch(createToken(data)))
+      .then((data) => {
+        dispatch(createToken(data));
+        navigate('/');
+      })
       .catch(({ data: { message } }) => toast.error(message));
   };
 

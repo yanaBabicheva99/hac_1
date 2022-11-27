@@ -108,6 +108,8 @@ const Personal: React.FC = () => {
   //   if (isLoading) {
   //     return <h2>Loading...</h2>;
   const userId = useSelector(getUser());
+
+  console.log(userId)
   const { data: currentUser, error, isLoading } = useGetUserQuery<any>(userId);
 
   //   }
@@ -146,6 +148,11 @@ const Personal: React.FC = () => {
         .then(data => toast.info('Данные о пользователе обновлены'))
         .catch(err => toast.error('Ошибка, попробуйте позже'))
   }
+
+
+  // return (
+  //     <h3>User</h3>
+  // )
 
   return (
     <Content
@@ -231,24 +238,29 @@ const Personal: React.FC = () => {
                 </Card>
               </div>
             </div>
-            {currentUser.tests.length !== 0 ? (
-              <Card
-                title="Пройденные тесты"
-                extra={<Button type="ghost">Подробности</Button>}
-                tabList={tabList}
-                activeTabKey={activeTabKey1}
-                onTabChange={(key) => {
-                  onTab1Change(key);
-                }}
-                style={{ minWidth: "500px" }}
-              >
-                {currentUser.tests}
-              </Card>
-            ) : (
-              <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>
-                Нет тестов
-              </Card>
-            )}
+
+            {/*{*/}
+
+            {/*  currentUser.role === 'USER' && (currentUser?.tests?.length !== 0 ) ? (*/}
+            {/*  <Card*/}
+            {/*    title="Пройденные тесты"*/}
+            {/*    extra={<Button type="ghost">Подробности</Button>}*/}
+            {/*    tabList={tabList}*/}
+            {/*    activeTabKey={activeTabKey1}*/}
+            {/*    onTabChange={(key) => {*/}
+            {/*      onTab1Change(key);*/}
+            {/*    }}*/}
+            {/*    style={{ minWidth: "500px" }}*/}
+            {/*  >*/}
+            {/*    /!*{currentUser.tests}*!/*/}
+            {/*  </Card>*/}
+            {/*) : (*/}
+            {/*  <Card title="Пройденные тесты" style={{ minWidth: "500px" }}>*/}
+            {/*    Нет тестов*/}
+            {/*  </Card>*/}
+            {/*)}*/}
+
+
           </Card>
         </div>
       ) : (

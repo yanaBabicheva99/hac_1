@@ -20,23 +20,28 @@ import { TestPage } from "./TestPage/TestPage";
 
 import CreateTask from './createTask/createTask';
 import TestsListPage from './TestListPage/TestsListPage';
+import TestListPageUser from './TestListPage/TestListPageUser';
 
 
 export const Routes = () => {
-  const select = useSelector(getToken());
+  // const select = useSelector(getToken());
+  const select = true;
   const role = useSelector(getRole());
-  console.log(role);
+  console.log(role, 'role');
   console.log("select");
   console.log(select);
   if (select) {
     return (
       <Switch>
-        <Route path="/login" element={<Navigate to="/" replace />} />
+        {/*<Route path="/login" element={<Navigate to="/" replace />} />*/}
+
+
         <Route path="/" element={<Main />}></Route>
         {/*<Route path={"/tasks"} element={<Tasks />}></Route>*/}
-        <Route path={'/tests'} element={<TestsListPage />}></Route>
+        <Route path={'/tests'} element={role === 'ADMIN' ? <TestsListPage /> : <TestListPageUser />}></Route>
+        {role  &&  <Route path="/personalpage" element={<Personal />}></Route>}
+        <Route path="/login" element={<Login />}></Route>
 
-        <Route path="/personalpage" element={<Personal />}></Route>
         {/*<Route path="/headline" element={<Headline />}></Route>*/}
         {/*<Route path={"/exhibition"} element={<Exhibition />} />*/}
         {/*<Route path="*" element={<Navigate to="/login" replace />} />*/}
@@ -47,14 +52,17 @@ export const Routes = () => {
         <Route path={"/createtask"} element={<CreateTask />} />
         {/*<Route path={"/tasklist"} element={<TaskList />} />*/}
         {/*<Route path={"/tasklists"} element={<TaskLists />} />*/}
+        <Route path="/register" element={<Register />}></Route>
       </Switch>
     );
   } else {
     return (
       <Switch>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/*<Route path="/" element={<Navigate to="/login" replace />} />*/}
+
+
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        {/*<Route path="/login" element={<Login />}></Route>*/}
       </Switch>
     );
   }

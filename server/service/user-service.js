@@ -8,7 +8,7 @@ const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exceptions/api-error");
 
 class UserService {
-  async registration(email, password) {
+  async registration(email, password, name, age) {
     const candidate = await UserModel.findOne({ email });
     if (candidate) {
       throw ApiError.BadRequest(
@@ -19,7 +19,10 @@ class UserService {
     const activationLink = uuid.v4();
 
     const userRole = await Role.findOne({ value: "USER" });
+    // const userRole = { value: "ADMIN" }
     const user = await UserModel.create({
+      name,
+      age,
       email,
       password: hashPassword,
       activationLink,

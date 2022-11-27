@@ -28,6 +28,9 @@ const UserSchema = new Schema({
     type: String,
     ref: "Role",
   },
+  activationLink: {
+    type: String
+  },
   tests: [
     {
       test_id: { type: Schema.Types.ObjectId, ref: "Test" },

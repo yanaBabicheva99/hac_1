@@ -4,6 +4,8 @@ import {useGetUsersQuery} from "../../services/userService";
 import {Card, Avatar, Button, Modal} from "antd";
 import {useGetTestsQuery} from "../../services/testService";
 import {Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { getRole } from '../../services/tokenService';
 
 const info = () => {
     Modal.info({
@@ -25,6 +27,7 @@ const info = () => {
 
 const Main = () => {
     // const {data, error, isLoading} = useGetUsersQuery();
+    const role = useSelector(getRole());
     const {
         data: dataTests,
         error: dataErrors,
@@ -62,7 +65,7 @@ const Main = () => {
                                     style={{display: "flex", justifyContent: "space-between"}}
                                 >
                                     {test.description}
-                                    <Link to={`/test/${test._id}`}>
+                                    <Link to={role ? `/test/${test._id}` : '/login'}>
                                         <Button type="primary">Пройти тест!</Button>
                                     </Link>
                                 </div>

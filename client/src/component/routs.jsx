@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes as Switch, Navigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { getToken } from "../services/tokenService";
+import { getRole, getToken } from '../services/tokenService';
 import Main from "./Main/main";
 import Login from "./LoginPage/login";
 import Personal from "./PersonalCabinet/personal";
@@ -24,6 +24,8 @@ import TestsListPage from './TestListPage/TestsListPage';
 
 export const Routes = () => {
   const select = useSelector(getToken());
+  const role = useSelector(getRole());
+  console.log(role);
   console.log("select");
   console.log(select);
   if (select) {
@@ -36,7 +38,6 @@ export const Routes = () => {
 
         <Route path="/personalpage" element={<Personal />}></Route>
         {/*<Route path="/headline" element={<Headline />}></Route>*/}
-        <Route path="/register" element={<Register />}></Route>
         {/*<Route path={"/exhibition"} element={<Exhibition />} />*/}
         {/*<Route path="*" element={<Navigate to="/login" replace />} />*/}
         <Route path={"/singlequestion"} element={<SingleQuestion />} />
@@ -52,6 +53,7 @@ export const Routes = () => {
     return (
       <Switch>
         <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
       </Switch>
     );

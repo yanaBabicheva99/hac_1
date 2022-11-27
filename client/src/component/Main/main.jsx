@@ -24,18 +24,18 @@ const info = () => {
 
 
 const Main = () => {
-    const {data, error, isLoading} = useGetUsersQuery();
+    // const {data, error, isLoading} = useGetUsersQuery();
     const {
         data: dataTests,
         error: dataErrors,
         isLoading: dataLoading,
     } = useGetTestsQuery();
-    console.log("err", error);
+    console.log("err", dataErrors);
 
-    if (isLoading || dataLoading) {
+    if ( dataLoading) {
         return <h2>Loading</h2>;
     }
-    console.log(data, error);
+    // console.log(data, error);
     return (
         <div className={"main-wrapper"}>
             <div className={"brand-info"}>
@@ -57,7 +57,7 @@ const Main = () => {
                 <Card title={"Тесты"}>
                     <div className={"testcard-wrapper"}>
                         {dataTests.map((test) => (
-                            <Card title={test.name} style={{width: "100%", marginTop: '5px'}}>
+                            <Card key={test._id} title={test.name} style={{width: "100%", marginTop: '5px'}}>
                                 <div
                                     style={{display: "flex", justifyContent: "space-between"}}
                                 >

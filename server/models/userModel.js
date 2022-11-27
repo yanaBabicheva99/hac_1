@@ -12,7 +12,7 @@ const UserSchema = new Schema({
   },
   name: {
     type: String,
-    default: false,
+    // default: false,
   },
   gender: {
     type: String,

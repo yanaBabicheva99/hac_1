@@ -10,7 +10,6 @@ const SignupSchema = Yup.object().shape({
     .min(2, 'is too short!')
     .matches( /^\S/, 'incorrect'),
   description: Yup.string()
-    .matches( /^\S*$/, 'incorrect')
     .min(10, 'is too short!')
 });
 

@@ -1,4 +1,5 @@
 export interface UserDto {
+    role: string;
     email: string;
     id: string;
     isActivated: boolean

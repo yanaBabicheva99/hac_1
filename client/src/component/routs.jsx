@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes as Switch, Navigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { getRole, getToken } from '../services/tokenService';
+import { getRole, getToken } from "../services/tokenService";
 import Main from "./Main/main";
 import Login from "./LoginPage/login";
 import Personal from "./PersonalCabinet/personal";
@@ -18,16 +18,15 @@ import { TestPage } from "./TestPage/TestPage";
 // import TaskLists from "./TaskLists/TaskLists";
 // import CreateTest from "./createTask/createTask";
 
-import CreateTask from './createTask/createTask';
-import TestsListPage from './TestListPage/TestsListPage';
-import TestListPageUser from './TestListPage/TestListPageUser';
-
+import CreateTask from "./createTask/createTask";
+import TestsListPage from "./TestListPage/TestsListPage";
+import TestListPageUser from "./TestListPage/TestListPageUser";
 
 export const Routes = () => {
   // const select = useSelector(getToken());
   const select = true;
   const role = useSelector(getRole());
-  console.log(role, 'role');
+  console.log(role, "role");
   console.log("select");
   console.log(select);
   if (select) {
@@ -35,11 +34,13 @@ export const Routes = () => {
       <Switch>
         {/*<Route path="/login" element={<Navigate to="/" replace />} />*/}
 
-
         <Route path="/" element={<Main />}></Route>
         {/*<Route path={"/tasks"} element={<Tasks />}></Route>*/}
-        <Route path={'/tests'} element={role === 'ADMIN' ? <TestsListPage /> : <TestListPageUser />}></Route>
-        {role  &&  <Route path="/personalpage" element={<Personal />}></Route>}
+        <Route
+          path={"/tests"}
+          element={role === "ADMIN" ? <TestsListPage /> : <TestListPageUser />}
+        ></Route>
+        {role && <Route path="/personalpage" element={<Personal />}></Route>}
         <Route path="/login" element={<Login />}></Route>
 
         {/*<Route path="/headline" element={<Headline />}></Route>*/}
@@ -59,7 +60,6 @@ export const Routes = () => {
     return (
       <Switch>
         {/*<Route path="/" element={<Navigate to="/login" replace />} />*/}
-
 
         <Route path="/register" element={<Register />}></Route>
         {/*<Route path="/login" element={<Login />}></Route>*/}

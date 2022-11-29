@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./personal.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 import {
   Layout,
@@ -109,46 +109,44 @@ const Personal: React.FC = () => {
   //     return <h2>Loading...</h2>;
   const userId = useSelector(getUser());
 
-  console.log(userId)
+  console.log(userId);
   const { data: currentUser, error, isLoading } = useGetUserQuery<any>(userId);
 
   //   }
 
   const [changeUserInf] = useChangeUserInfMutation();
 
-  const [ infoUser, setInfoUser] = useState({
-    name: '',
-    age: '',
-    gender: 'пол'
-  })
-
+  const [infoUser, setInfoUser] = useState({
+    name: "",
+    age: "",
+    gender: "пол",
+  });
 
   const handleChange = (e: any) => {
-    if (typeof e === 'object') {
-      setInfoUser(prevState => ({
+    if (typeof e === "object") {
+      setInfoUser((prevState) => ({
         ...prevState,
-        [e.target.name] : e.target.value
-      }))
-    } else if (typeof e === 'string') {
-      setInfoUser(prevState => ({
-            ...prevState,
-            gender: e
-          }))
+        [e.target.name]: e.target.value,
+      }));
+    } else if (typeof e === "string") {
+      setInfoUser((prevState) => ({
+        ...prevState,
+        gender: e,
+      }));
     } else {
-      setInfoUser(prevState => ({
+      setInfoUser((prevState) => ({
         ...prevState,
-        age: e
-      }))
+        age: e,
+      }));
     }
-  }
+  };
 
   const handleUpdateUser = async () => {
     changeUserInf(infoUser)
-        .unwrap()
-        .then(data => toast.info('Данные о пользователе обновлены'))
-        .catch(err => toast.error('Ошибка, попробуйте позже'))
-  }
-
+      .unwrap()
+      .then((data) => toast.info("Данные о пользователе обновлены"))
+      .catch((err) => toast.error("Ошибка, попробуйте позже"));
+  };
 
   // return (
   //     <h3>User</h3>
@@ -191,7 +189,7 @@ const Personal: React.FC = () => {
                 {currentUser.avatar && (
                   <Avatar
                     size={100}
-                    src={`http://localhost:5000/files/${currentUser.avatar}`}
+                    src={`https://server-hack.onrender.com/files/${currentUser.avatar}`}
                     shape="square"
                     icon={<UserOutlined />}
                   />
@@ -208,24 +206,24 @@ const Personal: React.FC = () => {
                 >
                   <div className="input-age">
                     <Input
-                        value={infoUser.name}
-                        name='name'
-                        placeholder="Имя"
-                        onChange={handleChange}
+                      value={infoUser.name}
+                      name="name"
+                      placeholder="Имя"
+                      onChange={handleChange}
                     />
                     <InputNumber
-                      name='age'
+                      name="age"
                       value={infoUser.age}
                       placeholder="Возраст"
                       style={{ width: "100%", marginBottom: "10px" }}
                       onChange={handleChange}
                     />
                     <Select
-                        value={infoUser.gender}
-                        // name='gender'
-                        style={{ marginBottom: "10px" }}
-                        onChange={handleChange}
-                        placeholder="Пол"
+                      value={infoUser.gender}
+                      // name='gender'
+                      style={{ marginBottom: "10px" }}
+                      onChange={handleChange}
+                      placeholder="Пол"
                     >
                       <Option value="mail">Мужской</Option>
                       <Option value="female">Женский</Option>
@@ -234,7 +232,9 @@ const Personal: React.FC = () => {
                       <UploadMy />
                     </div>
                   </div>
-                  <Button onClick={handleUpdateUser} type={"primary"}>Изменить</Button>
+                  <Button onClick={handleUpdateUser} type={"primary"}>
+                    Изменить
+                  </Button>
                 </Card>
               </div>
             </div>
@@ -259,8 +259,6 @@ const Personal: React.FC = () => {
             {/*    Нет тестов*/}
             {/*  </Card>*/}
             {/*)}*/}
-
-
           </Card>
         </div>
       ) : (
